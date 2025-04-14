@@ -1,0 +1,18 @@
+[project]
+name = "azure-aifoundry-trace-sample"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "azure-ai-projects>=1.0.0b8",
+    "langchain-azure-ai[opentelemetry]>=0.1.2",
+    "langchain-core>=0.3.51",
+    "openinference-instrumentation-langchain>=0.1.41",
+    "opentelemetry-exporter-otlp<1.32.0",
+    "python-dotenv>=1.1.0",
+    
+]
+
+[tool.uv.workspace]
+members = ["openinference"]
