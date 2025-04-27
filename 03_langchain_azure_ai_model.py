@@ -40,6 +40,4 @@ chain_config = chain.with_config(callbacks=[tracer], run_name="Langchain_AzureAI
 
 response = chain_config.invoke({"language": "italian", "text": "hi"})
 
-print("***Print Raw response***")
-print(response)
-print("***End of Raw response***")
+print(f"Response: {response}")

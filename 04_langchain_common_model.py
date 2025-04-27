@@ -49,8 +49,5 @@ model = AzureChatOpenAI(
 chain = prompt | model | parser
 chain_config = chain.with_config(run_name="Langchain_AzureOpenAITracer")
 response = chain_config.invoke({"text": "What is the capital of France?"})
-# response = chain.invoke({"text": "What is the capital of France?"})
 
-print("***Response from the model***")
-print(response)
-print("***End of response from the model***")
+print(f"Response: {response}")

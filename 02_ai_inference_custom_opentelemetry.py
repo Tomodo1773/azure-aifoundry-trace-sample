@@ -48,6 +48,4 @@ message = [
 
 with tracer.start_as_current_span("AIInference_AzureMonitor_Otel"):
     response = client.complete(messages=message)
-    print("***Print Raw response***")
-    print(response)
-    print("***End of Raw response***")
+    print(f"Response: {response}")
