@@ -4,9 +4,9 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
 from dotenv import load_dotenv
+from langchain_anthropic import ChatAnthropic
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import AzureChatOpenAI
 from openinference.instrumentation.langchain import LangChainInstrumentor
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
@@ -39,15 +39,13 @@ prompt = ChatPromptTemplate.from_messages([("system", "You are a helpful assista
 parser = StrOutputParser()
 
 
-model = AzureChatOpenAI(
-    api_key=os.environ["AZURE_OPENAI_API_KEY"],
-    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-    api_version="2025-01-01-preview",
-    azure_deployment="gpt-4o",
+model = ChatAnthropic(
+    api_key=os.environ["ANTHROPIC_API_KEY"],
+    model="claude-3-7-sonnet-latest",
 )
 
 chain = prompt | model | parser
-chain_config = chain.with_config(run_name="Langchain_AzureOpenAITracer")
+chain_config = chain.with_config(run_name="Langchain_LangchainInstrumentor")
 response = chain_config.invoke({"text": "What is the capital of France?"})
 
 print(f"Response: {response}")
